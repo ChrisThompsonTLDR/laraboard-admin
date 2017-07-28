@@ -1,0 +1,25 @@
+{
+    "name": "christhompsontldr/laraboard-admin",
+    "description": "Laraboard admin package",
+    "authors": [
+        {
+            "name": "Chris Thompson",
+            "email": "christhompsontldr@gmail.com",
+            "homepage": "https://christhompsontldr.com"
+        }
+    ],
+    "keywords": ["laravel","forum"],
+    "homepage": "https://laraboard.io",
+    "support": {
+        "issues": "https://github.com/christhompsontldr/laraboard-admin/issues",
+        "source": "https://github.com/christhompsontldr/laraboard-admin"
+    },
+    "require": {
+        "christhompsontldr/laraman": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Christhompsontldr\\LaraboardAdmin\\": "src/"
+        }
+    }
+}
