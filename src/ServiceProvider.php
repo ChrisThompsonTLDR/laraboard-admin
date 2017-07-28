@@ -38,11 +38,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
 
-        $loader->alias('Laratrust', \Laratrust\LaratrustFacade::class);
-        $loader->alias('Form',      \Collective\Html\FormFacade::class);
-        $loader->alias('Html',      \Collective\Html\HtmlFacade::class);
-        $loader->alias('Markdown',  \BrianFaust\Parsedown\Facades\Parsedown::class);
-
         $this->app->register(\Christhompsontldr\Laraman\ServiceProvider::class);
 
         //  make the config available even if not published
