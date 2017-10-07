@@ -11,33 +11,22 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         // publish configs
         $this->publishes([
-           realpath(dirname(__DIR__)) . '/config/laraboard.php' => config_path('laraboard.php'),
+           realpath(dirname(__DIR__)) . '/config/laraboard-admin.php' => config_path('laraboard-admin.php'),
         ]);
 
-        $this->loadViewsFrom(realpath(__DIR__ . '/resources/views'), config('laraboard.view.hintpath'));
-
+        //  add routes
         if (!$this->app->routesAreCached()) {
             $this->setupRoutes($this->app->router);
         }
-
-        //  create the commands
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                \Christhompsontldr\Laraboard\Commands\AddTrait::class,
-                \Christhompsontldr\Laraboard\Commands\Migrations::class,
-                \Christhompsontldr\Laraboard\Commands\Setup::class,
-            ]);
-        }
+        $this->loadViewsFrom(realpath(dirname(__DIR__) . '/resources/views'), config('laraboard-admin.view.hintpath'));
     }
 
     /**
-    * Register the providers that are used
-    *
-    */
+     * Register the providers that are used
+     *
+     */
     public function register()
     {
-        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-
         $this->app->register(\Christhompsontldr\Laraman\ServiceProvider::class);
 
         //  make the config available even if not published
@@ -45,13 +34,13 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             realpath(dirname(__DIR__)) . '/config/laraboard-admin.php', 'laraboard-admin'
         );
 
-        //  no laraman configured, do it ourselves
-        if (!config('laraman')) {
-            //  make the config available even if not published
-            $this->mergeConfigFrom(
-                realpath(dirname(__DIR__)) . '/config/laraboard-admin.php', 'laraman'
-            );
-        }
+        //  set everything for laraman to laraboard-admin, except the hintpath
+        $tmp = config('laraman.view.hintpath');
+        config([
+            'laraman' => array_replace_recursive(config('laraman'), config('laraboard-admin')),
+            'laraman.view.hintpath' => $tmp,
+        ]);
+
     }
 
     /**
