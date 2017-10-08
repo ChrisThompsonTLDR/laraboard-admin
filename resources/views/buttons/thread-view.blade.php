@@ -1,1 +1,1 @@
-<a href="{{ route(config('laraboard-admin.route.prefixDot') . 'threads.show', $row->entity->id) }}" class="btn btn-primary btn-xs">Details</a>
+<a href="{{ route(config('laraboard-admin.route.prefixDot') . 'threads.show', $row->entity->id) }}" class="btn btn-primary btn-sm">Details</a>
