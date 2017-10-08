@@ -35,11 +35,11 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         );
 
         //  set everything for laraman to laraboard-admin, except the hintpath
-        $tmp = config('laraman.view.hintpath');
+/*        $tmp = config('laraman.view.hintpath');
         config([
             'laraman' => array_replace_recursive(config('laraman'), config('laraboard-admin')),
             'laraman.view.hintpath' => $tmp,
-        ]);
+        ]);*/
 
     }
 
