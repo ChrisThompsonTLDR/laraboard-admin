@@ -12,7 +12,7 @@ class ThreadController extends Controller
 
     public function __construct()
     {
-        $this->model = \Christhompsontldr\Laraboard\Models\Thread::class;
+        $this->model = \Christhompsontldr\LaraboardAdmin\Models\Thread::class;
 
         $this->columns = [
             [
